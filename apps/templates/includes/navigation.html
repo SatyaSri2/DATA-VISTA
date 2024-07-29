@@ -1,0 +1,167 @@
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent">
+            <div class="container-fluid">
+                <div class="navbar-wrapper"> 
+
+                    <a class="navbar-brand" href="javascript:void(0)">Financial Dashboard</a>
+                </div>
+
+                                <!--updated header part from pavan-->
+                                <!-- New nav links and search bar with padding -->
+                            <nav class="nav-links" style="padding-left: 360px;">
+                                <button class="nav-button">
+                                    <a href="http://127.0.0.1:5000/index-data-metric-financial" class="nav-item">Data Metric</a>
+                                </button>
+                                <button class="nav-button">
+                                    <a href="http://127.0.0.1:5000/index-product-page-financial" class="nav-item">Products</a>
+                                </button>
+                                <button class="nav-button">
+                                    <a href="http://127.0.0.1:5000/index-order-page-financial" class="nav-item">Orders</a>
+                                </button>
+                                <button class="nav-button">
+                                    <a href="http://127.0.0.1:5000/index-report-financial" class="nav-item">Reports</a>
+                                </button>
+                            </nav>
+                    <!--
+                    <div class="search-bar flex-grow-1">    ##Add flex-grow-1 class
+                        <input type="text" id="search" class="form-control" placeholder="Search store locations...">
+                    </div>
+                    -->
+                    <!-- Additional CSS for styling -->
+                        <style>
+                            .nav-button {
+                                color: #090909;
+                                padding: 0.3em 1.5em;
+                                font-size: 18px;
+                                border-radius: 0.5em;
+                                margin: 0 20px;
+                                background: #e8e8e8;
+                                cursor: pointer;
+                                border: 1px solid #e8e8e8;
+                                transition: all 0.3s;
+                                box-shadow: 1px 1px 5px #891ade, -1px -1px 5px #b666f3;
+                            }
+
+                            .nav-button:active {
+                                color: #cecece;
+                                box-shadow: inset 1px 1px 5px #c5c5c5, inset -1px -1px 5px #ffffff;
+                            }
+
+                            .nav-button a {
+                                text-decoration: none;
+                                color: #090909;
+                            }
+
+                            .nav-button a:hover {
+                                text-decoration: none;
+                                color: #6400dd;
+                            }
+
+                            .search-bar {
+                                position: relative;
+                                flex-grow: 1; /* Allow search bar to fill available space */
+
+                            }
+
+                            .search-bar input {
+                                width: 100%; /* Ensure search input takes full width of search bar */
+                                padding: 5px;
+                                border-radius: 3px;
+                                border: 1px solid #ccc;
+                            }
+
+                            .autocomplete-results {
+                                position: absolute;
+                                background-color: white;
+                                border: 1px solid #ccc;
+                                max-height: 150px;
+                                overflow-y: auto;
+                                z-index: 1000;
+                                width: 100%;
+                            }
+
+                            .autocomplete-item {
+                                padding: 10px;
+                                cursor: pointer;
+                            }
+
+                            .autocomplete-item:hover {
+                                background-color: #f0f0f0;
+                            }
+                        </style>
+                        <!--end of pavan code-->
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-bar navbar-kebab"></span>
+                    <span class="navbar-toggler-bar navbar-kebab"></span>
+                    <span class="navbar-toggler-bar navbar-kebab"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navigation">
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Remove the theme changer -->
+                        <!--
+                        <li class="input-group d-flex align-items-center mb-0">
+                            <label class="switch theme-switch">
+                                <input type="checkbox" class="bsc" checked="">
+                                <span class="slider"></span>
+                            </label>
+                        </li>
+                        -->
+                        <!-- Notifications -->
+                        <!--
+                        <li class="search-bar input-group">
+                            <button class="btn btn-link" id="search-button" data-toggle="modal"
+                                    data-target="#searchModal"><i class="tim-icons icon-zoom-split"></i>
+                                <span class="d-lg-none d-md-block">Search</span>
+                            </button>
+                        </li>
+                        <li class="dropdown nav-item">
+                            <a href="javascript:void(0)" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                                <div class="notification d-none d-lg-block d-xl-block"></div>
+                                <i class="tim-icons icon-sound-wave"></i>
+                                <p class="d-lg-none">
+                                    Notifications
+                                </p>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right dropdown-navbar">
+                                <li class="nav-link"><a href="#" class="nav-item dropdown-item">Mike John responded to
+                                    your email</a></li>
+                                <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">You
+                                    have 5 more tasks</a></li>
+                                <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Your
+                                    friend Michael is in town</a></li>
+                                <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Another
+                                    notification</a></li>
+                                <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Another
+                                    one</a></li>
+                            </ul>
+                        </li>
+                        -->
+                        <li class="dropdown nav-item">
+                            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                                <div class="photo">
+                                    <img src="{{ config.ASSETS_ROOT }}/img/anime3.png" alt="Profile Photo">
+                                </div>
+                                <b class="caret d-none d-lg-block d-xl-block"></b>
+                                <p class="d-lg-none">
+                                    Log out
+                                </p>
+                            </a>
+                            <ul class="dropdown-menu dropdown-navbar">
+                                <li class="nav-link">
+                                    <a href="/user.html" class="nav-item dropdown-item">Profile</a>
+                                </li>
+                                <li class="dropdown-divider"></li>
+                                <li class="nav-link">
+                                    <a href="{{ url_for('authentication_blueprint.logout') }}" 
+                                       class="nav-item dropdown-item">Logout</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="separator d-lg-none"></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        

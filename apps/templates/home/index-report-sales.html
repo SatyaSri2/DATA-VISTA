@@ -1,0 +1,171 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %}
+
+{% block stylesheets %}
+<style>
+.table-full-width {
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+
+/* Optional: Adjust table responsiveness */
+.table-responsive {
+    overflow-y: hidden; /* Hide vertical scrollbar */
+}
+h5.card-title {
+    font-size: 27px;
+    font-family: sans-serif;
+}
+
+/* Add padding at the top of the content container */
+.content-container {
+    padding-top: 50px; /* Adjust this value as needed */
+}
+
+#export-options button {
+    margin-left: 10px;
+    padding: 10px;
+}
+
+#export-options {
+    display: flex;
+}
+
+/* Export buttons styles */
+.buttonDownload {
+    display: inline-block;
+    position: relative;
+    padding: 10px 25px;
+    background-color: #8321d8;
+    color: white;
+    font-family: sans-serif;
+    text-decoration: none;
+    font-size: 0.9em;
+    text-align: center;
+    text-indent: 20px;
+    border: none;
+    border-radius: 4px;
+}
+
+.buttonDownload:hover {
+    background-color: #8e076e;
+    color: white;
+}
+
+.buttonDownload:before,
+.buttonDownload:after {
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: 15px;
+    top: 52%;
+}
+
+.buttonDownload:before {
+    width: 10px;
+    height: 2px;
+    border-style: solid;
+    border-width: 0 2px 2px;
+}
+
+.buttonDownload:after {
+    width: 0;
+    height: 0;
+    margin-left: 3px;
+    margin-top: -7px;
+    border-style: solid;
+    border-width: 4px 4px 0 4px;
+    border-color: transparent;
+    border-top-color: inherit;
+    animation: downloadArrow 1s linear infinite;
+    animation-play-state: paused;
+}
+
+.buttonDownload:hover:before {
+    border-color: #cdefbd;
+}
+
+.buttonDownload:hover:after {
+    border-top-color: #cdefbd;
+    animation-play-state: running;
+}
+
+@keyframes downloadArrow {
+    0% {
+        margin-top: -7px;
+        opacity: 1;
+    }
+
+    0.001% {
+        margin-top: -15px;
+        opacity: 0.4;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        margin-top: 0;
+        opacity: 0.4;
+    }
+}
+
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="content-container">
+    <div class="row">
+        <div class="card-body">
+            <div class="d-flex justify-content-between mb-3">
+                <div>
+                    <label for="rowsPerPage">Rows per page:</label>
+                    <select id="rowsPerPage">
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                </div>
+                <div>
+                    <div id="export-options">
+                        <button class="buttonDownload" id="exportPDF">PDF</button>
+                        <button class="buttonDownload" id="exportExcel">EXCEL</button>
+                        <button class="buttonDownload" id="exportCSV">CSV</button>
+                    </div>
+                </div>
+            </div>
+            <div class="table-full-width table-responsive">
+                <table class="table tablesorter" id="report-table">
+                    <thead class="text-primary">
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Store ID</th>
+                            <th>Order Date</th>
+                            <th>Salesperson</th>
+                            <th>Product</th>
+                            <th>Category</th>
+                            <th>Order Status</th>
+                            <th>Profit</th>
+                            <th>Quantity</th>
+                            <th>City</th>
+                            <th>COGS</th>
+                            <th>Payment Method</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Data will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="d-flex justify-content-between mt-3">
+                <button id="prevPage">Previous</button>
+                <button id="nextPage">Next</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+{% endblock scripts %}

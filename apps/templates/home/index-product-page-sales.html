@@ -1,0 +1,163 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %}
+
+{% block stylesheets %}
+<!-- THIS PAGE IS DEVELOPED BY PRATHIKSHA AND SATYA | MODIFIED BY PRANITA-->
+<!-- Add any page-specific stylesheets here -->
+<style>
+    /* Remove scrollbars from the table */
+    .table-full-width {
+        overflow-x: hidden; /* Hide horizontal scrollbar */
+    }
+
+    /* Optional: Adjust table responsiveness */
+    .table-responsive {
+        overflow-y: hidden; /* Hide vertical scrollbar */
+    }
+    h5.card-title {
+        font-size: 27px;
+        font-family: sans-serif;
+    }
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="content">
+    <div class="row">
+        <!-- Product Info -->
+        <div class="col-lg-6">
+            <div class="card card-equal-height">
+                <div class="card-header">
+                    <h5 class="card-title">Product Search</h5>
+                    <div class="input-group">
+                        <input type="text" id="product-search" class="form-control" placeholder="Enter Product ID in the range 2000-2066">
+                        <button id="search-button" class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+                <div class="card-body product-info-table">
+                    <h4 class="card-title" style="font-size: 25px;">Product Info</h4>
+                    <table class="table table-borderless" style="height: 500px;">
+                        <tbody>
+                        <tr>
+                            <td><strong>Product ID:</strong></td>
+                            <td><span id="product-id"></span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Product Name:</strong></td>
+                            <td><span id="product-name"></span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Category:</strong></td>
+                            <td><span id="category"></span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sub Category:</strong></td>
+                            <td><span id="sub-category"></span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Unit Price:</strong></td>
+                            <td><span id="unit-price"></span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Quantity:</strong></td>
+                            <td><span id="quantity"></span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Profit:</strong></td>
+                            <td><span id="profit"></span></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    
+    
+
+        <!-- Customer Feedback and Top Products -->
+        <div class="col-lg-6">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-chart">
+                        <div class="card-header">
+                            <h5 class="card-title">Customer Rating</h5>
+                            <h5 class="card-category"></h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-area">
+                                <canvas id="customerFeedback"></canvas> <!-- Corrected ID -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                
+            <!-- Top Products Table -->
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Top Products</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-full-width table-responsive">
+                            <table class="table tablesorter" id="top1-products-table">
+                                <thead class="text-primary">
+                                <tr>
+                                    <th>Sr.no.</th>
+                                    <th>Product Name</th>
+                                    <th>Category</th>
+                                    <th>Amount</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Data will be populated by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    <div class="card card-chart">
+        <div class="card-header ">
+            <div class="row">
+                <div class="col-sm-6 text-left" id="Pbp">
+                    <h5 class="card-title">Profit by Product</h5>
+                </div>
+                <div class="col-sm-6">
+                    <!-- Additional header content if needed -->
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="chart-area">
+                <canvas id="profitByProductBarChart1" style="display: block; height: 100vh; width: 100vh;" class="chartjs-render-monitor"></canvas>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="card card-chart">
+        <div class="card-header ">
+            <div class="row">
+                <div class="col-sm-6 text-left">
+                    <h5 class="card-title">Sales by Product</h5>
+                </div>
+                <div class="col-sm-6">
+                    <!-- Additional header content if needed -->
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="chart-area">
+                <canvas id="salesByProductBarChart" style="display: block; height: 220px; width: 961px;" class="chartjs-render-monitor"></canvas>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block scripts %}
+<!-- Add any page-specific scripts here -->
+{% endblock scripts %}

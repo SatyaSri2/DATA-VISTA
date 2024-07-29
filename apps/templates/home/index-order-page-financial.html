@@ -1,0 +1,170 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+<style>
+    .order-info-table {
+        height: 80%;
+        overflow-y: auto;
+    }
+
+    .card-equal-height {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .card-equal-height .card-body {
+        flex: 1;
+    }
+
+    .equal-height-row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .equal-height-row > .col-lg-6, .equal-height-row > .col-md-6 {
+        display: flex;
+        flex: 1;
+        margin-bottom: 30px;
+    }
+
+    /* Add spacing between the search input and the button */
+    .input-group .form-control {
+        margin-right: 10px;
+    }
+
+    .chart-container {
+        position: relative;
+        width: 100%;
+    }
+    #orderStatusChart {
+        height: 400px !important;
+    }
+    #customerFeedbackChart {
+        height: 300px !important;
+    }
+    h5.card-title {
+        font-size: 27px;
+        font-family: sans-serif;
+    }
+
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="content">
+    <div class="row equal-height-row">
+        <!-- Search Bar and Order Info Table -->
+        <div class="col-lg-6">
+            <div class="card card-equal-height">
+                <div class="card-header">
+                    <h5 class="card-title">Order Search</h5>
+                    <div class="input-group">
+                        <input type="text" id="order-search" class="form-control" placeholder="Enter Order ID in the range 6000-705998">
+                        <button id="search-button" class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+                <div class="card-body order-info-table">
+                    <h4 class="card-title" style="font-size: 25px;">Order Info</h4>
+                    <table class="table table-borderless">
+                        <tbody>
+                            <tr>
+                                <td><strong>Order ID:</strong></td>
+                                <td><span id="order-id"></span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Order Date:</strong></td>
+                                <td><span id="order-date"></span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Order Status:</strong></td>
+                                <td><span id="order-status"></span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Delivery Date:</strong></td>
+                                <td><span id="delivery-date"></span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Shipping Cost:</strong></td>
+                                <td><span id="shipping-cost"></span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Quantity:</strong></td>
+                                <td><span id="quantity"></span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Total Price:</strong></td>
+                                <td><span id="total-price"></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    
+        <!--  Order Status Distribution -->
+        <div class="col-lg-6">
+            <div class="card card-chart card-equal-height">
+                <div class="card-header">
+                    <h5 class="card-title">Order Status Distribution</h5>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container" style="position: relative; height:400px; width:100%">
+                        <canvas id="orderStatusChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row equal-height-row">
+        <!-- Customer Feedback Pie Chart -->
+        <div class="col-md-6">
+            <div class="card card-chart card-equal-height">
+                <div class="card-header">
+                    <h5 class="card-title">Customer Rating</h5>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container" style="position: relative; height:300px; width:100%">
+                        <canvas id="customerFeedbackChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Volume Over Time -->
+        <div class="col-md-6">
+            <div class="card card-equal-height">
+                <div class="card-header">
+                    <h5 class="card-title">Order Volume Over Time</h5>
+                </div>
+                <div class="card-body" >
+                    <canvas id="orderVolumeChart" style="height: 400px;"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Profit by Order Date -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Profit by Order Date</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="profitOrderChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+{% endblock javascripts %}

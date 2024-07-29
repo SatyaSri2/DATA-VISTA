@@ -1,0 +1,90 @@
+        <!-- Navbar for sales-->
+        <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent navbar-sales">
+            <div class="container-fluid">
+                <div class="navbar-wrapper"> 
+
+                    <a class="navbar-brand" href="javascript:void(0)">Sales Manager Dashboard</a>
+                </div>
+
+                    <nav class="nav-links" style="padding-left: 350px;" >
+                        <a href="http://127.0.0.1:5000/index-data-metric-sales" class="nav-item">Data Metric</a>
+                        <a href="http://127.0.0.1:5000/index-product-page-sales" class="nav-item">Products</a>
+                        <a href="http://127.0.0.1:5000/index-order-page-sales" class="nav-item">Orders</a>
+                        <a href="http://127.0.0.1:5000/index-report-sales" class="nav-item">Reports</a>
+                    </nav>
+        <!-- Replaced search bar with name box avilash 14-07-24-->
+        <div class="name-box flex-grow-1">
+            <span id="store-info" class="form-control"> {{ username }} </span>
+        </div>
+                    
+        <!-- Additional CSS for styling -->
+        <style>
+            .navbar-nav-links {
+                padding-left: 40px; /* Adjust padding as needed */
+            }
+            .nav-item {
+                padding-left: 35px;
+            }
+            .nav-links {
+                margin-right: 10px; /* Add margin between nav links and search bar */
+                padding-right: 40px;
+            }
+
+            .nav-links a {
+                margin: 0 15px;
+                text-decoration: none;
+            }
+
+            .name-box {
+                position: relative;
+                flex-grow: 1; /* Allow search bar to fill available space */
+                padding-left: 5px;
+                max-width: 250px;
+            }
+
+            .name-box span {
+                padding: 5px;
+                padding-left: 20px;
+                border-radius: 10px;
+                border: 1.5px solid #ae23ff;
+                background: lightgrey;
+                box-shadow: rgba(50, 50, 93, 0.25) 0px 25px 30px -08px inset, rgba(0, 0, 0, 0.3) 0px 15px 23px -15px inset;
+            }
+        </style>
+                        <!--end of pavan code-->
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-bar navbar-kebab"></span>
+                    <span class="navbar-toggler-bar navbar-kebab"></span>
+                    <span class="navbar-toggler-bar navbar-kebab"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navigation">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="dropdown nav-item">
+                            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                                <div class="photo">
+                                    <img src="{{ config.ASSETS_ROOT }}/img/anime3.png" alt="Profile Photo">
+                                </div>
+                                <b class="caret d-none d-lg-block d-xl-block"></b>
+                                <p class="d-lg-none">
+                                    Log out
+                                </p>
+                            </a>
+                            <ul class="dropdown-menu dropdown-navbar">
+                                <li class="nav-link">
+                                    <a href="/user.html" class="nav-item dropdown-item">Profile</a>
+                                </li>
+                                <li class="dropdown-divider"></li>
+                                <li class="nav-link">
+                                    <a href="{{ url_for('authentication_blueprint.logout') }}" 
+                                       class="nav-item dropdown-item">Logout</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="separator d-lg-none"></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        

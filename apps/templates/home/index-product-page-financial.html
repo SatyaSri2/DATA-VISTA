@@ -1,0 +1,173 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %}
+
+{% block stylesheets %}
+<!-- THIS PAGE IS DESIGNED AND MADE BY RITIK -->
+<!-- Add any page-specific stylesheets here -->
+<style>
+    /* Remove scrollbars from the table */
+    .table-full-width {
+        overflow-x: hidden; /* Hide horizontal scrollbar */
+    }
+
+    /* Optional: Adjust table responsiveness */
+    .table-responsive {
+        overflow-y: hidden; /* Hide vertical scrollbar */
+    }
+    h5.card-title {
+        font-size: 27px;
+        font-family: sans-serif;
+    }
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="content">
+    <div class="row">
+        <!-- Product Info -->
+        <div class="col-lg-6">
+            <div class="card card-equal-height">
+                <div class="card-header">
+                    <h5 class="card-title">Product Search</h5>
+                    <div class="input-group">
+                        <input type="text" id="product1-search" class="form-control" placeholder="Enter Product ID in the range 2000-2066">
+                        <button id="search-button1" class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+                <div class="card-body order-info-table">
+                    <h4 class="card-title" style="font-size: 25px;">Product Info</h4>
+                    <table class="table table-borderless" style="height: 500px;">
+                        <tbody>
+                            <tr>
+                                <td><strong>Product ID:</strong></td>
+                                <td><span id="product-id1"></span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Product Name:</strong></td>
+                                <td><span id="product-name1"></span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Category:</strong></td>
+                                <td><span id="category1"></span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Sub Category:</strong></td>
+                                <td><span id="sub-category1"></span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Unit Price:</strong></td>
+                                <td><span id="unit-price1"></span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Quantity:</strong></td>
+                                <td><span id="quantity1"></span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Profit:</strong></td>
+                                <td><span id="profit1"></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customer Feedback and Top Products -->
+        <div class="col-lg-6">
+            <div class="row">
+                <!-- Customer Feedback -->
+                <div class="col-md-12">
+                    <div class="card card-chart">
+                        <div class="card-header">
+                            <h5 class="card-title">Customer Rating</h5>
+                            <h5 class="card-category"></h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-area">
+                                <canvas id="customerFeedbackPieChart" data-function="renderCustomerFeedbackChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Top Products Table -->
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">Top Products</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-full-width table-responsive">
+                                <table class="table tablesorter" id="top-products-table1">
+                                    <thead class="text-primary">
+                                        <tr>
+                                            <th>Sr.no.</th>
+                                            <th>Product Name</th>
+                                            <th>Category</th>
+                                            <th>Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Data will be populated by JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profit by Product -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card card-chart">
+                <div class="card-header">
+                    <h5 class="card-title">Profit by Product</h5>
+                </div>
+                <div class="card-body">
+                    <div class="chart-area">
+                        <canvas id="profitByProductBarChartFA" data-function="renderProfitByProductChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profit by Category -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card card-chart">
+                <div class="card-header">
+                    <h5 class="card-title">Profit by Category</h5>
+                </div>
+                <div class="card-body">
+                    <div class="chart-area">
+                        <canvas id="profitByCategoryBarChart" data-function="renderProfitByCategoryChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+<!-- Add any page-specific scripts here -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Loop through all canvas elements with the data-function attribute
+    document.querySelectorAll('canvas[data-function]').forEach(function(canvas) {
+        // Get the function name from the data-function attribute
+        const functionName = canvas.getAttribute('data-function');
+        // Check if the function exists
+        if (typeof window[functionName] === 'function') {
+            // Call the function and pass the canvas element
+            window[functionName](canvas);
+        }
+    });
+});
+</script>
+{% endblock scripts %}

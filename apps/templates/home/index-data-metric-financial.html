@@ -1,0 +1,188 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %}
+
+{% block stylesheets %}
+<!-- THIS PAGE IS DEVELOPED AND MODIFIED BY PRANITA -->
+<!-- Specific Page CSS goes HERE  -->
+<style>
+    .card-stats.kpi-card {
+        height: 0; 
+        padding-top: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .card-stats.kpi-card .card-body {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 20px; 
+        width: 100%;
+    }
+    
+    .card-stats.kpi-card .numbers {
+        width: 130%; 
+    }
+    
+    .card-stats.kpi-card .card-title {
+        font-size: 24px; 
+        font-weight: bold; 
+    }
+    .card-stats.kpi-card .card-category {
+        font-size: 17px; 
+    }
+    h5.card-title{
+        font-size: 27px;
+        font-family: sans-serif;
+    }
+
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+<!-- Update KPI values with icons -->
+<div class="content">
+    <div class="row justify-content-center">
+        <div class="col-lg-2 col-md-4 col-sm-5">
+            <div class="card card-stats kpi-card">
+                <div class="card-body">
+                    <div class="numbers">
+                        <i class="bi bi-cash-stack text-primary" style="font-size: 2rem;"></i> <!-- Icon for Total Sales -->
+                        <p class="card-category">Sales</p>
+                        <p class="card-title" id="total-sales">N/A</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-5">
+            <div class="card card-stats kpi-card">
+                <div class="card-body">
+                    <div class="numbers">
+                        <i class="bi bi-currency-dollar text-success" style="font-size: 2rem;"></i> <!-- Icon for Total Profit -->
+                        <p class="card-category">Profit</p>
+                        <p class="card-title" id="total-profit">N/A</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-5">
+            <div class="card card-stats kpi-card">
+                <div class="card-body">
+                    <div class="numbers">
+                        <i class="bi bi-cart4 text-warning" style="font-size: 2rem;"></i> <!-- Icon for Total Orders -->
+                        <p class="card-category">Orders</p>
+                        <p class="card-title" id="total-orders">N/A</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-5">
+            <div class="card card-stats kpi-card">
+                <div class="card-body">
+                    <div class="numbers">
+                        <i class="bi bi-truck text-info" style="font-size: 2rem;"></i> <!-- Icon for Total Shipping Cost -->
+                        <p class="card-category">Shipping Cost</p>
+                        <p class="card-title" id="total-shipping">N/A</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-5">
+            <div class="card card-stats kpi-card">
+                <div class="card-body">
+                    <div class="numbers">
+                        <i class="bi bi-percent text-danger" style="font-size: 2rem;"></i> <!-- Icon for Total Discounts -->
+                        <p class="card-category">Gross Margin</p>
+                        <p class="card-title" id="gross-margin">N/A</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Revenue Over Time and Sales by Region -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title" >Revenue Over Time</h5>
+                    <p class="card-category"></p>
+                </div>
+                <div class="card-body">
+                    <canvas id="revenueOverTimeChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Sales by Region Map Chart -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Sales by Region</h5>
+                    <p class="card-category"></p>
+                </div>
+                <div class="card-body">
+                    <canvas id="salesByRegionChart" style="height: 400px;"></canvas>
+                </div>                
+            </div>
+        </div>
+    
+    <!--Profit Distribution -->
+    
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Profit Distribution</h5>
+                    <p class="card-category"></p>
+                </div>
+                <div class="card-body">
+                    <canvas id="profitDistributionChart" style="height: 300px;"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Revenue vs Profit by Product Category</h5>
+                        <p class="card-category"></p>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="revenueVsProfitByCategoryChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    <!-- Revenue vs Profit by Product Category -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Profit Over Time</h5>
+                    <p class="card-category"></p>
+                </div>
+                <div class="card-body">
+                    <canvas id="profitOverTimeChart"></canvas>
+                </div>
+            </div>
+        </div>
+</div>
+
+</div>
+{% endblock content %}
+
+{% block scripts %}
+<!-- Specific Page JS goes HERE  -->
+{% endblock scripts %}
